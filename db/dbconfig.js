@@ -6,7 +6,7 @@ var config = {
   host: 'localhost',
   port: 5432,
   database: 'cheeses_db',
-  user: 'trevorpreston' // your username here!!
+  user: 'jackie' // your username here!!
 }
 
 var connection = pgInstance(config);
