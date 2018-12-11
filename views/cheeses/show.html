@@ -9,5 +9,8 @@
 <body>
   <a href="/cheeses">back</a>
   <h1>{{name}}</h1>
+  <form action="/cheeses/{{id}}?_method=DELETE" method="POST">
+    <button type="submit">delete cheese</button>
+  </form>
 </body>
 </html>

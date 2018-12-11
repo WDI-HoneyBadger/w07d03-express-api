@@ -7,9 +7,10 @@
   <title>Document</title>
 </head>
 <body>
+  <a href="/cheeses/new">new cheese</a>
   {{#cheeses}}
     <ul>
-      <li>name: {{name}}</li>
+      <li><a href="/cheeses/{{id}}">name: {{name}}</a></li>
       <li>origin: {{origin}}</li>
       <li>color:{{color}}</li>
     </ul>

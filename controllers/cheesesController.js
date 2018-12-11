@@ -3,24 +3,34 @@ var router = express.Router();
 
 var cheese = require('../models/cheese');
 
-router.get('/', cheese.getAll, function(req, res){
+router.get('/', cheese.getAll, renderIndex);
+router.get('/new', renderNew);
+router.get('/:id', cheese.find, renderShow);
+router.post('/', cheese.create, redirectShow);
+router.delete('/:id', cheese.delete, redirectIndex);
+
+function renderIndex(req, res) {
   mustacheVariables = {
     cheeses: res.locals.cheeses
   }
   res.render('./cheeses/index', mustacheVariables);
-})
+}
 
-router.get('/new', function(req,res){
+function renderNew(req, res) {
   res.render('./cheeses/new');
-})
+}
 
-router.get('/:id', cheese.find, function(req, res){
+function renderShow(req, res) {
   res.render('./cheeses/show', res.locals.cheese)
-})
+}
 
-router.post('/', cheese.create, function(req, res){
+function redirectShow(req, res) {
   var id = res.locals.cheese_id;
   res.redirect(`/cheeses/${id}`);
-})
+}
+
+function redirectIndex(req, res){
+  res.redirect('/cheeses');
+}
 
 module.exports = router;

@@ -36,4 +36,16 @@ cheese.create = function(req, res, next){
     })
 }
 
+cheese.delete = function(req, res, next){
+  connection.none('DELETE FROM cheeses WHERE id=$1;', [req.params.id])
+    .then(function(){
+      console.log('successful delete');
+      next();
+    })
+    .catch(function(error){
+      console.log(error);
+      next();
+    })
+}
+
 module.exports = cheese;

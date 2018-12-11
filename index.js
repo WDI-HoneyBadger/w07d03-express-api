@@ -3,6 +3,7 @@ var express = require('express');
 var mustache = require('mustache-express');
 var port = 3000;
 var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
 
 //app-level config
 var app = express();
@@ -14,6 +15,8 @@ app.set('view engine', 'html');
 /* setting up body parser */
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+
+app.use(methodOverride('_method'));
 
 //app-level routing
 app.set('views', __dirname + '/views');
