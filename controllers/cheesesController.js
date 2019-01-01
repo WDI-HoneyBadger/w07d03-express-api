@@ -3,20 +3,15 @@ const router = express.Router();
 
 const cheese = require('../models/cheese');
 
-const renderIndex = (req, res) => res.render('./cheeses/index', { cheeses: res.locals.cheeses });
-const renderNew = (req, res) => res.render('./cheeses/new');
-const renderEdit = (req, res) => res.render('./cheeses/edit', res.locals.cheese);
-const renderShow = (req, res) => res.render('./cheeses/show', res.locals.cheese);
-const redirectShow = (req, res) => res.redirect(`/cheeses/${res.locals.cheese.id}`);
-const redirectIndex = (req, res) => res.redirect('/cheeses');
+const sendCheeses = (req, res) => res.json(res.locals.cheeses);
+const sendCheese = (req, res ) => res.json(res.locals.cheese);
+const sendSuccess = (req, res) => res.send("success");
 
-router.get('/', cheese.getAll, renderIndex);
-router.get('/new', renderNew);
-router.get('/:id', cheese.find, renderShow);
-router.get('/:id/edit', cheese.find, renderEdit);
+router.get('/', cheese.getAll, sendCheeses);
+router.get('/:id', cheese.find, sendCheese);
 
-router.post('/', cheese.create, redirectShow);
-router.put('/:id', cheese.update, redirectShow)
-router.delete('/:id', cheese.delete, redirectIndex);
+router.post('/', cheese.create, sendCheese);
+router.put('/:id', cheese.update, sendCheese)
+router.delete('/:id', cheese.delete, sendSuccess);
 
 module.exports = router;

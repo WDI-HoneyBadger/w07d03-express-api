@@ -1,6 +1,6 @@
-var connection = require('../db/dbconfig');
+const connection = require('../db/dbconfig');
 
-var cheese = {};
+const cheese = {};
 
 // create a method that gets all the data from the "cheeses" table
 cheese.getAll = (req, res, next) => {
