@@ -1,13 +1,13 @@
 //top-level config
-var express = require('express');
-var mustache = require('mustache-express');
-var port = 3000;
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
+const express = require('express');
+const mustache = require('mustache-express');
+const port = 3000;
+const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 //app-level config
-var app = express();
-var cheesesController = require('./controllers/cheesesController');
+const app = express();
+const cheesesController = require('./controllers/cheesesController');
 
 app.engine('html', mustache());
 app.set('view engine', 'html');

@@ -1,36 +1,22 @@
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
-var cheese = require('../models/cheese');
+const cheese = require('../models/cheese');
+
+const renderIndex = (req, res) => res.render('./cheeses/index', { cheeses: res.locals.cheeses });
+const renderNew = (req, res) => res.render('./cheeses/new');
+const renderEdit = (req, res) => res.render('./cheeses/edit', res.locals.cheese);
+const renderShow = (req, res) => res.render('./cheeses/show', res.locals.cheese);
+const redirectShow = (req, res) => res.redirect(`/cheeses/${res.locals.cheese.id}`);
+const redirectIndex = (req, res) => res.redirect('/cheeses');
 
 router.get('/', cheese.getAll, renderIndex);
 router.get('/new', renderNew);
 router.get('/:id', cheese.find, renderShow);
+router.get('/:id/edit', cheese.find, renderEdit);
+
 router.post('/', cheese.create, redirectShow);
+router.put('/:id', cheese.update, redirectShow)
 router.delete('/:id', cheese.delete, redirectIndex);
-
-function renderIndex(req, res) {
-  mustacheVariables = {
-    cheeses: res.locals.cheeses
-  }
-  res.render('./cheeses/index', mustacheVariables);
-}
-
-function renderNew(req, res) {
-  res.render('./cheeses/new');
-}
-
-function renderShow(req, res) {
-  res.render('./cheeses/show', res.locals.cheese)
-}
-
-function redirectShow(req, res) {
-  var id = res.locals.cheese_id;
-  res.redirect(`/cheeses/${id}`);
-}
-
-function redirectIndex(req, res){
-  res.redirect('/cheeses');
-}
 
 module.exports = router;
