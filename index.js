@@ -22,7 +22,7 @@ app.use(methodOverride('_method'));
 app.set('views', __dirname + '/views');
 
 //start app
-app.listen(port, function(){
+app.listen(port, () => {
     console.log('---------------------------------------');
     console.log('Express listening on localhost:' + port);
     console.log('---------------------------------------');
@@ -31,6 +31,6 @@ app.listen(port, function(){
 //route controllers
 app.use('/cheeses', cheesesController);
 
-app.use('/', function(req, res){
+app.use('/', (req, res) => {
   res.send('homepage!');
 });
