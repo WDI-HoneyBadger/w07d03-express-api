@@ -29,6 +29,7 @@ cheese.find = function(req, res, next){
 }
 
 cheese.create = function(req, res, next){
+  console.log(req.body)
   connection.one("INSERT INTO cheeses(name, color, origin, stink_level) VALUES($1,$2,$3,$4) RETURNING *;",
   [req.body.name, req.body.color, req.body.origin, req.body.stink_level])
     .then(result => {

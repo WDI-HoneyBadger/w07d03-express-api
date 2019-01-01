@@ -5,7 +5,7 @@ const cheese = require('../models/cheese');
 
 const sendCheeses = (req, res) => res.json(res.locals.cheeses);
 const sendCheese = (req, res ) => res.json(res.locals.cheese);
-const sendSuccess = (req, res) => res.send("success");
+const sendSuccess = (req, res) => res.json({message: "success"});
 
 router.get('/', cheese.getAll, sendCheeses);
 router.get('/:id', cheese.find, sendCheese);
